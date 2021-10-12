@@ -1,6 +1,7 @@
 # Manage NSG for Deployments
 This is a copy of another repo that I have modified for my own use. 
 You can find the orignal repo from the link below: 
+
 https://github.com/marketplace/actions/manage-nsg#configure-azure-credentials
 
 
