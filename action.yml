@@ -1,0 +1,48 @@
+# action.yml
+name: 'Manage NSG'
+description: 'Add/Remove NSG Rules using the public IP of the hosted runner'
+inputs:
+  azure-credentials:
+    required: true
+    description: 'SPN details as secrets.AZURE_CREDENTIALS'
+  rule-priority-start:
+    required: false
+    default: '300'
+    description: 'Start value for the priority range to be used'
+  rule-priority-range:
+    required: false
+    default: '100'
+    description: 'range of the NSG priority values to be used when multiple agents are deploying sharing the same NSG'
+  rule-inbound-port:
+    required: false
+    default: '443'
+    description: 'Port for the inbound rule'
+  rule-id-for-removal:
+    required: false
+    default: ''
+    description: 'rule id to remove'
+  rule-nsg-resource-group-name:
+    required: true
+    description: 'Resource Group of the NSG'
+  rule-nsg-name:
+    required: true
+    description: 'Nme of the NSG'
+
+outputs:
+  rule_name: # id of output
+    description: 'Created NSG Rule Name'
+branding:
+  icon: 'shield'  
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.azure-credentials }}
+    - ${{ inputs.rule-priority-start }}
+    - ${{ inputs.rule-priority-range }}
+    - ${{ inputs.rule-inbound-port }}
+    - ${{ inputs.rule-id-for-removal }}
+    - ${{ inputs.rule-nsg-resource-group-name }}
+    - ${{ inputs.rule-nsg-name }}
+
