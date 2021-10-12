@@ -38,7 +38,7 @@ else
     echo _rule_priority_end: $_rule_priority_end
 
     _rule_priority=$(shuf -i $_rule_priority_start-$_rule_priority_end -n 1)
-    _rule_name=manage-nsg-github-actions-$_rule_priority
+    _rule_name=manage-nsg-github-actions
 
     echo "Adding rule.... $_rule_name"
     az network nsg rule create -g $_rule_nsg_resource_group --nsg-name $_rule_nsg \
